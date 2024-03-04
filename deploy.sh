@@ -74,7 +74,6 @@ EOF
       echo "Stop deployment"
       exit
     fi
-
 else
     echo
     echo "Bad selection"
