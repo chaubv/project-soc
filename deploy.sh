@@ -29,7 +29,7 @@ EOF
     echo -n "Do you want to continue for deploy to dev environment? (y/n)?"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ; then
-       echo "Yes! you start deploy"
+       echo "Yes! You starting deploy"
        sshpass -p "$remote_password_dev" ssh -T -o StrictHostKeyChecking=no "$remote_user_dev"@"$remote_host_dev" "cd $ORIGIN_DIRECTORY && docker-compose up -d --build"
     else
       echo "Stop deployment"
@@ -43,12 +43,13 @@ elif [ "$answer" = "staging" ] ; then
     sshpass -p "$remote_password_staging" ssh -T -o StrictHostKeyChecking=no "$remote_user_staging"@"$remote_host_staging" << EOF
     rm -rf $ORIGIN_DIRECTORY
     git clone $GIT_URI --branch staging
+    cd $ORIGIN_DIRECTORY && chmod 755 run.sh && ./run.sh
 EOF
 # Deploy to staging environment and version will tag commit hash ID
     echo -n "Do you want to continue for deploy to staging environment? (y/n)?"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ; then
-       echo "Yes! You start deploy"
+       echo "Yes! You starting deploy"
        sshpass -p "$remote_password_staging" ssh -T -o StrictHostKeyChecking=no "$remote_user_staging"@"$remote_host_staging" "cd $ORIGIN_DIRECTORY && docker-compose up -d --build"
     else
       echo "Stop deployment"
@@ -63,12 +64,13 @@ elif [ "$answer" = "prod" ] ; then
     sshpass -p "$remote_password_prod" ssh -T -o StrictHostKeyChecking=no "$remote_user_prod"@"$remote_host_prod" << EOF
     rm -rf $ORIGIN_DIRECTORY
     git clone $GIT_URI --branch main
+    cd $ORIGIN_DIRECTORY && chmod 755 run.sh && ./run.sh
 EOF
-# Deploy to prod environment
+# Deploy to prod environment and version will tag commit hash ID
     echo -n "Do you want to continue for deploy to prod environment? (y/n)?"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ; then
-       echo "Yes! you start deploy"
+       echo "Yes! You starting deploy"
        sshpass -p "$remote_password_prod" ssh -T -o StrictHostKeyChecking=no "$remote_user_prod"@"$remote_host_prod" "cd $ORIGIN_DIRECTORY && docker-compose up -d --build"
     else
       echo "Stop deployment"
