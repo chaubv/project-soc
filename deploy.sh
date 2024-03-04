@@ -1,13 +1,13 @@
 #!/bin/bash
 remote_user_dev=ubuntu
-remote_host_dev=192.168.3.5
-remote_password_dev=imip@1234
+remote_host_dev=192.168.1.10
+remote_password_dev=xxxxx
 remote_user_staging=ubuntu
-remote_host_staging=192.168.3.11
-remote_password_staging=imip@1234
+remote_host_staging=192.168.1.11
+remote_password_staging=xxxxxx
 remote_user_prod=ubuntu
-remote_host_prod=192.168.3.14
-remote_password_prod=imip@1234
+remote_host_prod=192.168.1.12
+remote_password_prod=xxxxx
 ORIGIN_DIRECTORY="project-soc"
 GIT_URI="https://github.com/chaubv/project-soc.git"
 
