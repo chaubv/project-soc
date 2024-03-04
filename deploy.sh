@@ -44,7 +44,7 @@ elif [ "$answer" = "staging" ] ; then
     rm -rf $ORIGIN_DIRECTORY
     git clone $GIT_URI --branch staging
 EOF
-# Deploy to staging environment
+# Deploy to staging environment and version will tag commit hash ID
     echo -n "Do you want to continue for deploy to staging environment? (y/n)?"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ; then
