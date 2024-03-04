@@ -23,8 +23,9 @@ if [ "$answer" = "dev" ] ; then
     sshpass -p "$remote_password_dev" ssh -T -o StrictHostKeyChecking=no "$remote_user_dev"@"$remote_host_dev" << EOF
     rm -rf $ORIGIN_DIRECTORY
     git clone $GIT_URI --branch dev
+    cd $ORIGIN_DIRECTORY && chmod 755 run.sh && ./run.sh
 EOF
-# Deploy to dev environment
+# Deploy to dev environment and version will tag commit hash ID
     echo -n "Do you want to continue for deploy to dev environment? (y/n)?"
     read -r answer
     if [ "$answer" != "${answer#[Yy]}" ] ; then
