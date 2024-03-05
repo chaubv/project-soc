@@ -36,10 +36,10 @@ pipeline {
 			}
 		}
 	}
-      stage('Deploy to server') {
+      stage('Deploy to server development') {
         agent {
             node {
-                  label 'agent-build'
+                  label 'agent-deploy' // You want to choose to server for deploy
                 }
             }
 	     environment {
