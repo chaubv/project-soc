@@ -11,7 +11,7 @@ pipeline {
 		 tag = sh(returnStdout: true, script: "git rev-parse -short=10 HEAD | tail -n +2").trim()	      
              	  }    
 	    steps {
-		git branch: 'main', credentialsId: '22f03a2a-00ff-444d-9485-4103b9f9e44e', url: 'https://github.com/chaubvimip/demo1.git'
+		git branch: 'main', credentialsId: '22f03a2a-00ff-444d-9485-4103b9f9e44e', url: 'https://github.com/chaubv/project-soc.git'
 		sh "docker build -t project-soc ."
 		sh "docker tag project-soc:latest chaubv/project-soc:$tag"
 		// Push image to Hub Docker    
