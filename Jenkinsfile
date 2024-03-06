@@ -14,7 +14,8 @@ pipeline {
 		git branch: 'main', credentialsId: '22f03a2a-00ff-444d-9485-4103b9f9e44e', url: 'https://github.com/chaubvimip/demo1.git'
 		sh "docker build -t project-soc ."
 		sh "docker tag project-soc:latest chaubv/project-soc:$tag"
-		sh "docker push chaubv/project-soc:$tag"
+		// Push image to Hub Docker    
+		sh "docker push chaubv/project-soc:$tag" 
 		}			
        }	  
       stage('Unit Test') {
