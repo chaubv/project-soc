@@ -1,6 +1,6 @@
 version: '2'
 services:
-  web:
-    build: .
+  web_soc:
+    image: chaubv/project-soc:tag
     ports:
-     - "8008:80"
+     - "8088:80"
