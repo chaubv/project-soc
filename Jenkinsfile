@@ -12,7 +12,9 @@ pipeline {
              	  }    
 	    steps {
 		git branch: 'main', credentialsId: '22f03a2a-00ff-444d-9485-4103b9f9e44e', url: 'https://github.com/chaubvimip/demo1.git'
-		sh "docker build -t project-soc:$tag ."
+		sh "docker build -t project-soc ."
+		sh "docker tag project-soc:latest chaubv/project-soc:$tag"
+		sh "docker push chaubv/project-soc:$tag"
 		}			
        }	  
       stage('Unit Test') {
@@ -25,11 +27,14 @@ pipeline {
 		tag = sh(returnStdout: true, script: "git rev-parse -short=10 HEAD | tail -n +2").trim()	      
              	}
             steps {
-               sh " docker run --entrypoint nginx project-soc:$tag -t"
+               sh " docker run --entrypoint nginx chaubv/project:$tag -t"
           	 }
 	    post {
 		failure {
-		     	echo 'This build has failed. See logs for details.'
+		     	script{
+				echo 'This build has failed. See logs for details.'
+				sh "exit 1"
+			    }
 			}
 		success {
 			echo 'Build succeeded.'
