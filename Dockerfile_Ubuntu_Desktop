@@ -5,7 +5,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y lubuntu-desktop
 RUN rm /run/reboot-required*
 
 RUN useradd -m ubuntu -p $(openssl passwd abc@123)
-RUN usermod -aG sudo scott
+RUN usermod -aG sudo ubuntu
 
 RUN apt install -y xrdp
 RUN adduser xrdp ssl-cert
